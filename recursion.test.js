@@ -6,7 +6,8 @@ const {
   findIndex,
   revString,
   gatherStrings,
-  binarySearch
+  binarySearch,
+  realSize
 } = require("./recursion");
 
 describe("product", function() {
@@ -120,5 +121,21 @@ describe("binarySearch", function () {
   it("should return -1 if the value is not found", function() {
     expect(binarySearch([1, 2, 3, 4], 0)).toEqual(-1);
     expect(binarySearch([1, 2], 11)).toEqual(-1);
+  });
+});
+
+describe("realSize", function () {
+  const TEST_GROUPS = [
+    { "input": [], "expected": 0 },
+    { "input": [[]], "expected": 0 },
+    { "input": [1, [1]], "expected": 2 },
+    { "input": [1, [], 2, [], 3, []], "expected": 3 },
+    { "input": [0, [1, [5, [4, 3], 1], 1]], "expected": 7 },
+    { "input": [[[5], 3], 0, 2, [], [4, [5, 6]]], "expected": 7 },
+  ];
+
+  it('should find real size of an array', function () {
+    for (const test of TEST_GROUPS)
+      expect(realSize(test.input)).toEqual(test.expected);
   });
 });

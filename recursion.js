@@ -79,6 +79,22 @@ function binarySearch(arr, val, min = 0, max = arr.length-1) {
   if (val > arr[mid]) return binarySearch(arr, val, mid + 1, max);    
   }
 
+/** Given a multi-dimensional integer array
+ * return the total number of integers stored inside this array.
+ * Given [[[5], 3], 0, 2, [], [4, [5, 6]]] => 7.
+ */
+
+function realSize(arrays) {
+  // Force be with you, code warrior!
+  let sum = 0;
+  for (let i = 0; i < arrays.length; i++) {
+    if (typeof(arrays[i]) === "number") sum = sum + 1;
+    if (typeof (arrays[i]) === "object") sum += realSize(arrays[i]);
+    
+
+  }
+  return sum;
+}
 
 module.exports = {
   product,
@@ -88,7 +104,8 @@ module.exports = {
   findIndex,
   revString,
   gatherStrings,
-  binarySearch
+  binarySearch,
+  realSize
 };
 
-console.log(binarySearch([1, 2, 3, 4], 0));
+console.log(realSize([[1], 2, 3, [1, 2], 4]));
